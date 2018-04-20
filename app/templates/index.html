@@ -1,6 +1,15 @@
 {% extends "base.html" %}
 
 {% block app_content %}
-    <h1>Hello World!</h1>
-    <a href="{{ url_for('display') }}">Display</a>
+    <h1>Song Select</h1>
+    <form action="{{ url_for('display') }}", method="POST">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.song.label }}<br>
+            {{ form.song() }}
+        </p>
+        <p>
+        	{{ form.submit() }}
+        </p>
+    </form>
 {% endblock %}
