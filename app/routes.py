@@ -16,5 +16,8 @@ def display():
     all_songs = []
     selected_songs = request.form.getlist('song')
     for song_id in selected_songs:
-        all_songs.append(Song.query.filter_by(id=song_id).one())
+        song = Song.query.filter_by(id=song_id).one()
+        for verse in song.lyrics.split("\n\n"):
+        	slide = Song(title=song.title, lyrics=verse)
+        	all_songs.append(slide)
     return render_template('display.html', title='Display', songs=all_songs, slide_title='Worship', subtitle=datetime.utcnow())
