@@ -1,1 +1,1 @@
-web: flask db upgrade; gunicorn main:app
+web: flask db upgrade; python song_populator.py; gunicorn main:app
