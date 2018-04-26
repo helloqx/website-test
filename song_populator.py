@@ -1,5 +1,11 @@
 ﻿from app import db
 from app.models import Song
+import os	
+import psycopg2
+
+if 'HEROKU' in os.environ:
+    DATABASE_URL = os.environ['DATABASE_URL']
+    connection = psycopg2.connect(DATABASE_URL, sslmode='require')
 
 songs = Song.query.all()
 
