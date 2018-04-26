@@ -2,16 +2,20 @@
 from app.models import Song
 import psycopg2
 
+print('A')
 if 'HEROKU' in os.environ:
     DATABASE_URL = os.environ['DATABASE_URL']
     connection = psycopg2.connect(DATABASE_URL, sslmode='require')
+    print('B')
 
+print('C')
 songs = Song.query.all()
 
 for s in songs:
 	db.session.delete(s)
 db.session.commit()
 
+print('D')
 file_path = "./app/static/samplesongs.txt"
 title = ""
 lyrics = ""
