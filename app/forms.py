@@ -1,7 +1,8 @@
 from flask_wtf import FlaskForm
-from wtforms import SelectMultipleField, SubmitField
+from wtforms import HiddenField, TextAreaField, SubmitField
 from wtforms.validators import DataRequired
 
 class SongSelectForm(FlaskForm):
-    song = SelectMultipleField(label='Song')
+    ids = HiddenField(label='IDs', render_kw={'readonly': True})
+    selected = TextAreaField(label='Selected Songs', render_kw={'readonly': True}, validators=[DataRequired()])
     submit = SubmitField(label='Display')

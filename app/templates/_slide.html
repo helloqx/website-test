@@ -1,0 +1,10 @@
+{# Sub-template for displaying slides #}
+
+<div class="item">
+	<div class="title">{{ slide.title }}</div>
+	<div class="lyrics">
+	{% for line in slide.lyrics.split("\n") %}
+    	{{line}}<br>
+	{% endfor %}
+	</div>
+</div>

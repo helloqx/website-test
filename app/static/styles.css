@@ -1,3 +1,8 @@
+textarea#selected {
+    cursor: not-allowed;
+    resize: none;
+}
+
 .item {
 	style= width:100%; height: auto
 }
