@@ -33,7 +33,6 @@
 
     $(document).ready( function () {
         $('#all_songs').DataTable();
-        $('[data-toggle="tooltip"]').tooltip(); 
         $('#id').val("");
         $('#selected').val("");
     } );
@@ -43,21 +42,29 @@
             { "orderable": false, "targets": 2 }
         ]
     } );
-    $('.select').click( function(e) {
-        var id = $(this).attr('id')
-        var index = chosenSongId.indexOf(id);
-        if (index > -1) {
-          chosenSongId.splice(index, 1);
-          chosenSongTitles.splice(index, 1);
-        } else {
-            chosenSongId.push(id)
-            chosenSongTitles.push($(this).attr('name'))
-        }
-        //TODO:$('.glyphicon#' + id).toggleClass('glyphicon-plus').toggleClass('glyphicon-minus')
-        $('#ids').val(chosenSongId.join(', '));
-        $('#selected').val(chosenSongTitles.join(', '));
-        e.preventDefault();
-    });
+    // Add/Remove songs
+    $('#all_songs').on('click', '.select', ( 
+        function(e) {
+            var id = $(this).attr('id')
+            var index = chosenSongId.indexOf(id);
+            if (index > -1) {
+              chosenSongId.splice(index, 1);
+              chosenSongTitles.splice(index, 1);
+            } else {
+                chosenSongId.push(id)
+                chosenSongTitles.push($(this).attr('name'))
+            }
+            $('#ids').val(chosenSongId.join(', '));
+            $('#selected').val(chosenSongTitles.join(', '));
+            e.preventDefault();
+        })
+    );
+    $('#all_songs').on('click', '.glyphicon', ( 
+        function(e) {
+            $(this).toggleClass("glyphicon-plus glyphicon-minus");
+            e.preventDefault();
+        })
+    );
 </script>
 {% endblock %}
 
