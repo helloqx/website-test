@@ -9,8 +9,8 @@
 				<div class="title">{{ slide_title }}</div>
   				<div class="lyrics">{{ subtitle }}</div>
 			</div>
-			{% for song in songs %}
-				{% include '_song.html' %}
+			{% for slide in slides %}
+				{% include '_slide.html' %}
 			{% endfor %}
 		</div>
 
