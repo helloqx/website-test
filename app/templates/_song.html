@@ -1,0 +1,19 @@
+{# Sub-template for displaying slides #}
+
+<tr>
+    <td>{{ song.title}}</td>
+    <td>
+		{{ song.lyrics.split("\n\n")[0] }}
+    </td>
+    <td>
+    	<a href="#">
+          <span class="glyphicon glyphicon-plus"></span>
+        </a>
+        <a href="#">
+          <span class="glyphicon glyphicon-minus"></span>
+        </a>
+        <a href="https://www.youtube.com/results?search_query={{song.title}}">
+          <span class="glyphicon glyphicon-music"></span>
+        </a>
+    </td>
+</tr>
