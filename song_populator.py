@@ -1,5 +1,6 @@
 ﻿from app import db
 from app.models import Song
+import os
 import psycopg2
 
 print('A')
@@ -8,7 +9,6 @@ if 'HEROKU' in os.environ:
     connection = psycopg2.connect(DATABASE_URL, sslmode='require')
     print('B')
 
-print('C')
 songs = Song.query.all()
 
 for s in songs:
