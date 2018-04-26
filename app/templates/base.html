@@ -13,6 +13,5 @@
 
 {% block styles %}
 {{ super() }}
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 {% endblock %}
-
