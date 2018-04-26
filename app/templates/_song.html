@@ -6,8 +6,8 @@
 		{{ song.lyrics.split("\n\n")[0] }}
     </td>
     <td class="text-center">
-    	<a href="#" id="{{song.id}}" data-toggle="tooltip" title="Add">
-          <span class="glyphicon glyphicon-plus"></span>
+    	<a href="#" class="select" id="{{song.id}}" name="《{{song.title}}》" data-toggle="tooltip" title="Add">
+          <span class="glyphicon glyphicon-plus" id="{{song.id}}"></span>
         </a>
         <a href="https://www.youtube.com/results?search_query={{song.title}}" target="_blank" data-toggle="tooltip" title="Listen">
           <span class="glyphicon glyphicon-music"></span>

@@ -1,17 +1,12 @@
 {% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
 
 {% block app_content %}
-    <h1>Song Select</h1>
+    <h1>Select Songs</h1>
     <form action="{{ url_for('display') }}", method="POST">
-        {#{ form.hidden_tag() }#}
-        <p>
-            {{ form.song.label }}<br>
-            {{ form.song() }}
-        </p>
-        <p>
-        	{{ form.submit() }}
-        </p>
+        {{ wtf.quick_form(form) }}
     </form>
+    <hr>
     <table id="all_songs" class="table table-striped table-bordered">
         <thead>
             <tr>
@@ -33,9 +28,14 @@
 <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
 <script>
+    var chosenSongId = []
+    var chosenSongTitles = []
+
     $(document).ready( function () {
         $('#all_songs').DataTable();
         $('[data-toggle="tooltip"]').tooltip(); 
+        $('#id').val("");
+        $('#selected').val("");
     } );
     
     $('#all_songs').dataTable( {
@@ -43,5 +43,20 @@
             { "orderable": false, "targets": 2 }
         ]
     } );
+    $('.select').click( function(e) {
+        var id = $(this).attr('id')
+        var index = chosenSongId.indexOf(id);
+        if (index > -1) {
+          chosenSongId.splice(index, 1);
+          chosenSongTitles.splice(index, 1);
+        } else {
+            chosenSongId.push(id)
+            chosenSongTitles.push($(this).attr('name'))
+        }
+        //TODO:$('.glyphicon#' + id).toggleClass('glyphicon-plus').toggleClass('glyphicon-minus')
+        $('#ids').val(chosenSongId.join(', '));
+        $('#selected').val(chosenSongTitles.join(', '));
+        e.preventDefault();
+    });
 </script>
 {% endblock %}
