@@ -16,7 +16,6 @@
 				{% include '_slide.html' %}
 			{% endfor %}
 		</div>
-
 		<a class="left carousel-control" href="#carousel" role="button" data-slide="prev" {#style="background:none !important"#}>
 			<span class="glyphicon glyphicon-chevron-left"></span>
 			<span class="sr-only">Previous</span>
@@ -27,4 +26,18 @@
 
 		</a>
 	</div>
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+	<script>
+		var myCarousel = $(".carousel");
+		myCarousel.append("<ol class='carousel-indicators'></ol>");
+		var indicators = $(".carousel-indicators"); 
+		myCarousel.find(".carousel-inner").children(".item").each(function(index) {
+		    (index === 0) ? 
+		    indicators.append("<li data-target='#carousel' data-slide-to='"+index+"' class='active'></li>") : 
+		    indicators.append("<li data-target='#carousel' data-slide-to='"+index+"'></li>");
+		});
+	</script>
 {% endblock %}
