@@ -1,12 +1,16 @@
 {% extends "base.html" %}
 
 {% block app_content %}
-	<h1>Display Page</h1>
 	<div id="carousel" class="carousel slide" data-interval="false">
 		<div class="carousel-inner">
 			<div class="item active">
-				<div class="title">{{ slide_title }}</div>
-  				<div class="lyrics">{{ subtitle }}</div>
+		        <img src="http://via.placeholder.com/1280x800">
+		        <div class="main-title-wrapper">
+		        	<div class="main-title">{{ slide_title }}</div>
+		        </div>
+		        <div class="subtitle-wrapper">
+		        <div class="subtitle">{{ subtitle }}</div>
+		        </div>
 			</div>
 			{% for slide in slides %}
 				{% include '_slide.html' %}
@@ -14,12 +18,13 @@
 		</div>
 
 		<a class="left carousel-control" href="#carousel" role="button" data-slide="prev" {#style="background:none !important"#}>
-			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			<span class="glyphicon glyphicon-chevron-left"></span>
 			<span class="sr-only">Previous</span>
 		</a>
 		<a class="right carousel-control" href="#carousel" role="button" data-slide="next">
-			<span class="carousel-control-next-icon" aria-hidden="true"></span>
+			<span class="glyphicon glyphicon-chevron-right"></span>
 			<span class="sr-only">Next</span>
+
 		</a>
 	</div>
 {% endblock %}
