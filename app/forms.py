@@ -4,5 +4,5 @@ from wtforms.validators import DataRequired
 
 class SongSelectForm(FlaskForm):
     ids = HiddenField(label='IDs', render_kw={'readonly': True})
-    selected = TextAreaField(label='Selected Songs', render_kw={'readonly': True}, validators=[DataRequired()])
+    selected = TextAreaField(label='Selected Songs', render_kw={'readonly': True, 'placeholder': "Click '+' to add a song!"}, validators=[DataRequired()])
     submit = SubmitField(label='Display')
