@@ -1,10 +1,17 @@
 {# Sub-template for displaying slides #}
 
 <div class="item">
-	<div class="title">{{ slide.title }}</div>
-	<div class="lyrics">
-	{% for line in slide.lyrics.split("\n") %}
-    	{{line}}<br>
-	{% endfor %}
+	<img src="http://via.placeholder.com/1280x800">
+	<div class="title-wrapper">
+	    <div class="title">
+	    	{{ slide.title }}
+	    </div>
+  	</div>
+	<div class="lyrics-wrapper">
+		<div class="lyrics">
+		{% for line in slide.lyrics.split("\n") %}
+	    	{{line}}<br>
+		{% endfor %}
+		</div>
 	</div>
 </div>
