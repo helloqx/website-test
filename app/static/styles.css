@@ -29,7 +29,12 @@ textarea#selected {
 */
 
 .item {
-    style= width:100%; height: auto
+    width:100%; 
+    height: auto
+}
+
+.item img{
+    width:100%; 
 }
 
 .main-title{
@@ -45,7 +50,7 @@ textarea#selected {
 
 .title-wrapper {
 	position: absolute;
-	top: 5%;
+	top: 20%;
 	left: 50%;
 	width: 100%
 }
