@@ -20,6 +20,7 @@ def catalogue():
 def display():
     form = SongSelectForm()
     if not form.validate_on_submit():
+        flash('Pick at least one song!')
         return redirect(url_for('catalogue'))
     else:
         all_songs = []
