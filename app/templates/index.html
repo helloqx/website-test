@@ -1,6 +1,36 @@
 {% extends "base.html" %}
-{% import 'bootstrap/wtf.html' as wtf %}
 
 {% block app_content %}
-    <a href="{{ url_for('catalogue') }}"> Get Started! </a>
+    <div class="jumbotron">
+        <div class="container">
+          <h1 class="display-3">Praise the Lord!</h1>
+          <p>This is a website for creating slides for worship on the go.</p>
+          <p><a class="btn btn-primary btn-lg" href="{{ url_for('catalogue') }}" role="button">Get Started   »</a></p>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <h2>How to Use</h2>
+                <p>Someday this link will lead to a tutorial.</p>
+                <br>
+                <br>
+                <p><a class="btn btn-info" href="#" role="button">Learn more »</a></p>
+            </div>
+            <div class="col-md-4">
+                <h2>Explore</h2>
+                <p>Someday this link will lead you to an index of all available songs.</p>
+                <br>
+                <p><a class="btn btn-info" href="#" role="button">View details »</a></p>
+            </div>
+            <div class="col-md-4">
+                <h2>Add a song</h2>
+                <p>Is a song missing from our database? Add a song here! </p>
+                <br>
+                <br>
+                <p><a class="btn btn-info" href="{{ url_for('add_song') }}" role="button">Add Song »</a></p>
+            </div>
+        </div>
+        <hr>
+    </div>
 {% endblock %}
