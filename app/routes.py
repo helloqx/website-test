@@ -1,6 +1,6 @@
-from flask import render_template, request, redirect, url_for
-from app import app
-from app.forms import SongSelectForm
+from flask import render_template, request, redirect, flash, url_for
+from app import app, db
+from app.forms import SongSelectForm, SongAddForm
 from app.models import Song
 from datetime import datetime
 import pytz
@@ -31,3 +31,17 @@ def display():
             	all_songs.append(slide)
         return render_template('display.html', title='Display', slides=all_songs, 
                 slide_title='Worship', subtitle=datetime.now(pytz.timezone('Asia/Singapore')).date())
+
+@app.route('/add_song', methods=['GET', 'POST'])
+def add_song():
+    form = SongAddForm()
+    if form.validate_on_submit():
+        lyrics = form.lyrics.data
+        lyrics = lyrics.replace("\r\n", "\n")
+        song = Song(title=form.title.data, lyrics=lyrics)
+        db.session.add(song)
+        db.session.commit()
+        flash('Congratulations, you have added a new song!')
+        return redirect(url_for('add_song'))
+    return render_template('add_song.html', title='Add a song', form=form)
+    
