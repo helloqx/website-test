@@ -4,7 +4,7 @@ import os
 import psycopg2
 
 if app.config['IS_HEROKU']:
-    connection = psycopg2.connect(app.config['DATABASE_URL'], sslmode='require')
+    connection = psycopg2.connect(app.config['SQLALCHEMY_DATABASE_URI'], sslmode='require')
 
 if app.config['RESET_DATABASE']:
 	songs = Song.query.all()
