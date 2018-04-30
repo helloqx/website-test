@@ -19,7 +19,7 @@ if app.config['RESET_DATABASE']:
 		for line in in_file:
 			if line.startswith("/"):
 				if lyrics != "":
-					s = Song(title=title, lyrics=lyrics)
+					s = Song(title=title, lyrics=lyrics.strip())
 					db.session.add(s)
 					lyrics = ""
 				title = line.strip()[1:]
