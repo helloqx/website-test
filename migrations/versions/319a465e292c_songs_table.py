@@ -21,7 +21,7 @@ def upgrade():
     op.create_table('song',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('title', sa.String(length=64), nullable=True),
-    sa.Column('lyrics', sa.String(length=256), nullable=True),
+    sa.Column('lyrics', sa.String(length=512), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_index(op.f('ix_song_lyrics'), 'song', ['lyrics'], unique=False)
