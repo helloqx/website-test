@@ -12,8 +12,9 @@
             <thead>
                 <tr>
                     <th>Song</th>
-                    <th>Lyrics</th>
+                    <th>Lyrics (First Slide)</th>
                     <th>Actions</th>
+                    <th>Lyrics (Rest)</th>
                 </tr>
             </thead>
             <tbody>
@@ -41,7 +42,15 @@
     
     $('#all_songs').dataTable( {
         "columnDefs": [
-            { "orderable": false, "targets": 2 }
+            {
+                "targets": [ 2 ],
+                "orderable": false,
+                "searchable": false
+            },
+            {
+                "targets": [ 3 ],
+                "visible": false
+            }
         ]
     } );
     // Add/Remove songs

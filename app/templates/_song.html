@@ -1,9 +1,9 @@
-{# Sub-template for displaying slides #}
+{# Sub-template for displaying song entries #}
 
 <tr>
     <td>{{ song.title}}</td>
     <td>
-		{{ song.lyrics.split("\n\n")[0] }}
+        {{ song.lyrics.split("\n\n")[0] }}
     </td>
     <td class="text-center">
     	<a href="#" class="select" id="{{song.id}}" name="《{{song.title}}》">
@@ -12,5 +12,8 @@
         <a href="https://www.youtube.com/results?search_query={{song.title}}" target="_blank">
           <span class="glyphicon glyphicon-music"></span>
         </a>
+    </td>
+    <td>
+        {{ song.lyrics.split("\n\n")[1:] or ""}}
     </td>
 </tr>
