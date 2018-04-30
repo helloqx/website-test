@@ -45,4 +45,12 @@ def add_song():
         flash('Congratulations, you have added a new song!')
         return redirect(url_for('add_song'))
     return render_template('add_song.html', title='Add a song', form=form)
-    
+
+@app.route('/help')
+def help():
+    return "Coming Soon"
+
+
+@app.route('/contribute')
+def contribute():
+    return render_template('contribute.html', title='Contribute')

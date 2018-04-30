@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+    <div class="container">
+        <div class="page-header">
+            <h1>Contribute</h1>
+        </div>
+        <hr>
+        <div class="list-inline-item">
+            <a href="https://github.com/helloqx/worship-slide-generator" class="btn btn-default btn-lg">
+                <i class="fa fa-github fa-fw"></i>
+                <span class="network-name">Github</span>
+            </a>
+        </div>
+        <br>
+        <ul class="list-group">
+          <li class="list-group-item active">Planned Features</li>
+          <li class="list-group-item">Webpage Style</li>
+          <li class="list-group-item">Keyboard Controls for Display</li>
+          <li class="list-group-item">Admin Panel for editing songs</li>
+          <li class="list-group-item">Tagging Songs</li>
+          <li class="list-group-item">Tutorial/How to use</li>
+          <li class="list-group-item">Chinese Translation</li>
+        </ul>
+    </div>
+{% endblock %}
+
+{% block styles %}
+    {{ super() }}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+{% endblock %}
