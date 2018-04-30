@@ -8,15 +8,20 @@ import pytz
 @app.route('/')
 @app.route('/index')
 def index():
+    return render_template('index.html', title='Praise the Lord - Slide Generator')
+
+@app.route('/catalogue')
+def catalogue():
     all_songs = Song.query.all()
     form = SongSelectForm()
-    return render_template('index.html', title='Home', form=form, songs=all_songs)
+    return render_template('catalogue.html', title='Home', form=form, songs=all_songs)
 
 @app.route('/display', methods=['GET', 'POST'])
 def display():
     form = SongSelectForm()
     if not form.validate_on_submit():
-        return redirect('/index')
+        flash('Pick at least one song!')
+        return redirect(url_for('catalogue'))
     else:
         all_songs = []
         selected_songs = request.form.get('ids').split(", ")

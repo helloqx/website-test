@@ -1,10 +1,13 @@
 {% extends "base.html" %}
 
+{% block navbar %}
+{% endblock %}
+
 {% block app_content %}
-	<div id="carousel" class="carousel slide" data-interval="false">
+	<div id="carousel" class="carousel" data-interval="false">
 		<div class="carousel-inner">
 			<div class="item active">
-		        <img src="http://via.placeholder.com/1280x800">
+		        <img src="{{ url_for('static', filename='background.png') }}">
 		        <div class="main-title-wrapper">
 		        	<div class="main-title">{{ slide_title }}</div>
 		        </div>
