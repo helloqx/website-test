@@ -34,7 +34,13 @@
     var chosenSongId = []
     var chosenSongTitles = []
 
-        $('#all_songs').dataTable( {
+    $(document).ready( function () {
+        $('#all_songs').DataTable();
+        $('#id').val("");
+        $('#selected').val("");
+    } );
+    
+    $('#all_songs').dataTable( {
         "columnDefs": [
             {
                 "targets": [ 2 ],
@@ -47,13 +53,6 @@
             }
         ]
     } );
-
-    $(document).ready( function () {
-        $('#all_songs').DataTable();
-        $('#id').val("");
-        $('#selected').val("");
-    } );
-    
     // Add/Remove songs
     $('#all_songs').on('click', '.select', ( 
         function(e) {
