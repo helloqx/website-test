@@ -3,8 +3,10 @@
 
 {% block app_content %}
     <div class='container'>
-        <h1>Select Songs</h1>
-        <form action="{{ url_for('display') }}", method="POST">
+        <br>
+        <div class="well">THIS IS A TEMPORARY PAGE until the song listing is constructed</div>
+        <h1>Edit Songs</h1>
+        <form action="{{ url_for('edit_song') }}", method="POST">
             {{ wtf.quick_form(form) }}
         </form>
         <hr>
@@ -13,13 +15,26 @@
                 <tr>
                     <th>Song</th>
                     <th>Lyrics (First Slide)</th>
-                    <th>Actions</th>
+                    <th>Edit</th>
                     <th>Lyrics (Rest)</th>
                 </tr>
             </thead>
             <tbody>
                 {% for song in songs %}
-                    {% include '_song.html' %}
+                    <tr>
+                        <td>{{ song.title}}</td>
+                        <td>
+                            {{ song.lyrics.split("\n\n")[0] }}
+                        </td>
+                        <td class="text-center">
+                            <a href="#" class="select" id="{{song.id}}" name="{{song.title}}" lyrics="{{song.lyrics}}" link="{{song.link}}">
+                              <span class="icon glyphicon glyphicon-plus" id="{{song.id}}"></span>
+                            </a>
+                        </td>
+                        <td>
+                            {{ song.lyrics.split("\n\n")[1:] or ""}}
+                        </td>
+                    </tr>
                 {% endfor %}
             </tbody>
         </table>
@@ -51,29 +66,16 @@
     $(document).ready( function () {
         $('#all_songs').DataTable();
         $('#ids').val("");
-        $('#selected').val("");
+        $('#title').val("");
     } );
     
     // Add/Remove songs
     $('#all_songs').on('click', '.select', ( 
         function(e) {
-            var id = $(this).attr('id')
-            var index = chosenSongId.indexOf(id);
-            if (index > -1) {
-              chosenSongId.splice(index, 1);
-              chosenSongTitles.splice(index, 1);
-            } else {
-                chosenSongId.push(id)
-                chosenSongTitles.push($(this).attr('name'))
-            }
-            $('#ids').val(chosenSongId.join(', '));
-            $('#selected').val(chosenSongTitles.join(', '));
-            e.preventDefault();
-        })
-    );
-    $('#all_songs').on('click', '.icon', ( 
-        function(e) {
-            $(this).toggleClass("glyphicon-plus glyphicon-minus");
+            $('#ids').val($(this).attr('id'));
+            $('#title').val($(this).attr('name'));
+            $('#lyrics').val($(this).attr('lyrics'));
+            $('#link').val($(this).attr('link'));
             e.preventDefault();
         })
     );

@@ -14,3 +14,11 @@ class SongAddForm(FlaskForm):
     title = StringField(label='Title', render_kw={'placeholder': title_placeholder}, validators=[DataRequired()])
     lyrics = TextAreaField(label='Lyrics', render_kw={'rows': 20, 'placeholder': lyrics_placeholder, 'white-space': "pre-wrap"}, validators=[DataRequired()])
     submit = SubmitField(label='Add')
+
+class SongEditForm(FlaskForm):
+    ids = HiddenField(label='ID', render_kw={'readonly': True})
+    title = StringField(label='Title', validators=[DataRequired()])
+    lyrics = TextAreaField(label='Lyrics', render_kw={'rows': 20}, validators=[DataRequired()])
+    link = StringField(label='Link')
+    password = StringField(label='Secret Admin Password', validators=[DataRequired()])
+    submit = SubmitField(label='Edit')
