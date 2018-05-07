@@ -1,6 +1,6 @@
 from flask import render_template, request, redirect, flash, url_for
 from app import app, db
-from app.forms import SongSelectForm, SongAddForm
+from app.forms import SongSelectForm, SongAddForm, SongEditForm
 from app.models import Song
 from datetime import datetime
 import pytz
@@ -14,7 +14,7 @@ def index():
 def catalogue():
     all_songs = Song.query.all()
     form = SongSelectForm()
-    return render_template('catalogue.html', title='Home', form=form, songs=all_songs)
+    return render_template('catalogue.html', title='Select Song', form=form, songs=all_songs)
 
 @app.route('/display', methods=['GET', 'POST'])
 def display():
@@ -45,6 +45,20 @@ def add_song():
         flash('Congratulations, you have added a new song!')
         return redirect(url_for('add_song'))
     return render_template('add_song.html', title='Add a song', form=form)
+
+@app.route('/edit_song', methods=['GET', 'POST'])
+def edit_song():
+    all_songs = Song.query.all()
+    form = SongEditForm()
+    if form.validate_on_submit() and form.password.data == app.config['SECRET_ADMIN_PASSWORD']:
+        song = Song.query.filter_by(id=form.ids.data).one()
+        song.title = form.title.data
+        song.lyrics = form.lyrics.data
+        song.link = form.link.data
+        db.session.commit()
+        flash('Your changes have been saved.')
+        return redirect(url_for('edit_song'))
+    return render_template('edit_song.html', title='Edit Song', form=form, songs=all_songs)
 
 @app.route('/help')
 def help():

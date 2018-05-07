@@ -9,9 +9,15 @@
     	<a href="#" class="select" id="{{song.id}}" name="《{{song.title}}》">
           <span class="icon glyphicon glyphicon-plus" id="{{song.id}}"></span>
         </a>
-        <a href="https://www.youtube.com/results?search_query={{song.title}}" target="_blank">
-          <span class="glyphicon glyphicon-music"></span>
-        </a>
+        {% if song.link %}
+            <a href="{{song.link}}" target="_blank">
+                <span class="glyphicon glyphicon-music"></span>
+            </a>
+        {% else %}
+            <a href="https://www.youtube.com/results?search_query={{song.title}}" target="_blank">
+                <span class="glyphicon glyphicon-music"></span>
+            </a>
+        {% endif %}
     </td>
     <td>
         {{ song.lyrics.split("\n\n")[1:] or ""}}
