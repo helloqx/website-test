@@ -53,7 +53,7 @@ def edit_song():
     if form.validate_on_submit() and form.password.data == app.config['SECRET_ADMIN_PASSWORD']:
         song = Song.query.filter_by(id=form.ids.data).one()
         song.title = form.title.data
-        song.lyrics = form.lyrics.data
+        song.lyrics = form.lyrics.data.replace("\r\n", "\n")
         song.link = form.link.data
         db.session.commit()
         flash('Your changes have been saved.')
