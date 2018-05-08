@@ -18,5 +18,6 @@ The live version of the site can be found at https://praise-the-lord.herokuapp.c
 5. Launch the site with `flask run`. The site should be live at `localhost:5000`.
 
 ## Database Schema
-All songs are stored as a single database object, with lyric slides seperated by two newlines `\n\n`.
+All songs are stored as a single database object, with lyric slides seperated by two newlines `\n\n`.  
+
 ![image](https://user-images.githubusercontent.com/12347266/39738406-90c80e62-52bd-11e8-9d72-3a3bdf909565.png)
