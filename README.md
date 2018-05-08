@@ -15,7 +15,8 @@ The live version of the site can be found at https://praise-the-lord.herokuapp.c
 2. Set up a virtual environment if needed.
 3. Install the required libraries with the command `pip install -r requirements.txt`.
 4. Set the environment variable with `set FLASK_APP=main.py`.
-5. Launch the site with `flask run`. The site should be live at `localhost:5000`.
+5. Populate the database with `python song_populator.py`
+6. Launch the site with `flask run`. The site should be live at `localhost:5000`.
 
 ## Database Schema
 All songs are stored as a single database object, with lyric slides seperated by two newlines `\n\n`.  

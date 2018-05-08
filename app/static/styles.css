@@ -1,12 +1,4 @@
 /*
-    Base
-*/
-
-.navbar { 
-    margin-bottom: 0 
-}
-
-/*
     Landing Page
 */
 
@@ -87,6 +79,7 @@ textarea#selected {
 	left: 50%;
 	width: 100%
 }
+
 .subtitle{
 	font-size: 2em;
 	position: relative;
@@ -95,4 +88,8 @@ textarea#selected {
     margin:auto;
     width: 75%;
     text-align: center;
+}
+
+a:hover {
+    text-decoration: none !important;
 }
