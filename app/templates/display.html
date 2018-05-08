@@ -4,10 +4,11 @@
 {% endblock %}
 
 {% block app_content %}
+	<img class="d-block w-100" id="bg" src="{{ url_for('static', filename='background.png') }}">
 	<div id="carousel" class="carousel" data-interval="false">
 		<div class="carousel-inner">
+			<div class="wrapper d-block w-100"></div>
 			<div class="carousel-item active">
-				<img class="d-block w-100" src="{{ url_for('static', filename='background.png') }}">
 				<div class="main-title-wrapper">
 					<div class="main-title">{{ slide_title }}</div>
 				</div>

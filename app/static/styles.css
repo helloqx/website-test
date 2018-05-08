@@ -19,14 +19,14 @@ textarea#selected {
 /*
     Display Page
 */
-
-.item {
-    width:100%; 
-    height: auto
-}
-
-.item img{
-    width:100%; 
+#bg, .carousel, .carousel-item{
+    position: fixed;
+    top: 0; 
+    left: 0; 
+    
+    /* Preserve aspect ratio */
+    min-width: 100%;
+    min-height: 100%; 
 }
 
 .main-title{
