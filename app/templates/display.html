@@ -41,5 +41,21 @@
 		    indicators.append("<li data-target='#carousel' data-slide-to='"+index+"' class='active'></li>") : 
 		    indicators.append("<li data-target='#carousel' data-slide-to='"+index+"'></li>");
 		});
+		$(document).keydown(function(e) {
+			if (e.which == 37) {
+				//left
+				myCarousel.carousel('prev')
+			}
+			if (e.which == 39 || e.which == 32) {
+				//right or space
+				myCarousel.carousel('next')
+			}
+		});
+		$(document).mouseup(function(e) {
+			//lose focus on controls
+			$(".carousel-control-prev").blur()
+			$(".carousel-control-next").blur()
+		});
 	</script>
+
 {% endblock %}
