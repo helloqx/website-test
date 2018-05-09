@@ -13,14 +13,19 @@
 	  </button>
 	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
 	    <ul class="navbar-nav mr-auto">
-		    <li class="nav-item" id ="nav_choose"><a class="nav-link" href="{{ url_for('catalogue') }}">Choose Songs</a></li>
+		    <li class="nav-item" id ="nav_choose"><a class="nav-link" href="{{ url_for('catalogue') }}">Make Slides</a></li>
 	        <li class="nav-item" id ="nav_add"><a class="nav-link" href="{{ url_for('add_song') }}">Add Song</a></li>
 	        <li class="nav-item" id ="nav_edit"><a class="nav-link" href="{{ url_for('edit_song') }}">Edit Song</a></li>
+	        <li class="nav-item" id ="nav_latest"><a class="nav-link" href="{{ url_for('latest_slides') }}">Your Slides</a></li>
 	    </ul>
 	    <ul class="navbar-nav">
-            <li class="nav_login"><a class="nav-link disabled" href="{{ url_for('help') }}">Login</a></li>
-            <li class="nav_register"><a class="nav-link disabled" href="{{ url_for('help') }}">Register</a></li>
-            <li class="nav_help"><a class="nav-link disabled" href="{{ url_for('help') }}">Help</a></li>
+            {% if current_user.is_anonymous %}
+		        <li class="nav-item" id="nav_login"><a class="nav-link" href="{{ url_for('login') }}">Login</a></li>
+            	<li class="nav-item" id="nav_register"><a class="nav-link" href="{{ url_for('register') }}">Register</a></li>
+	        {% else %}
+		        <li class="nav-item" id="nav_logout"><a class="nav-link" href="{{ url_for('logout') }}">Logout</a></li>
+	        {% endif %}
+            <li class="nav-item" id="nav_help"><a class="nav-link" href="#" data-toggle="modal" data-target="#helpModal">Help</a></li>
         </ul>
 	  </div>
 	</nav>	
@@ -28,16 +33,38 @@
 
 {% block content %}
 	<div class="container">
-		{% with messages = get_flashed_messages() %}
+		{% with messages = get_flashed_messages(with_categories=true) %}
 			{% if messages %}
 				<br>
-		    	{% for message in messages %}
-		        <div class="alert alert-info" role="alert">{{ message }}</div>
+		    	{% for category, message in messages %}
+		        <div class="alert alert-{{ category }}" role="alert">{{ message }}</div>
 		    	{% endfor %}
 		   	{% endif %}
 		{% endwith %}
 	</div>
     {% block app_content %}{% endblock %}
+    <!--Modal-->
+    <div class="modal fade" id="helpModal" tabindex="-1" role="dialog" aria-labelledby="helpModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="helpModalLabel">
+                	    {% if title %}{{ title }}
+						{% else %}Help{% endif %}
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    {% block help_modal %}{% endblock %}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
 {% block styles %}
@@ -59,4 +86,3 @@
 	    });
 	</script> 
 {% endblock %}
-

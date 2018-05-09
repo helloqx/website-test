@@ -85,3 +85,15 @@
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css">
 {% endblock %}
+
+{% block help_modal %}
+    Click <span class="fas fa-plus"></span> to add a song.
+    <br>
+    Click <span class="fas fa-minus"></span> to remove a song.
+    <br>
+    Click <span class="fab fa-youtube"></span> to listen to the song on Youtube.
+    <hr>
+    Click <input class="btn btn-default" type="submit" value="Display"> after choosing 1 or more songs to launch the slides.
+    <br>
+    If you are logged in, the slides will be saved and can be accessed from 'Saved Slides'.
+{% endblock %}
