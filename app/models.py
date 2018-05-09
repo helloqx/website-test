@@ -16,6 +16,7 @@ class User(UserMixin, db.Model):
     username = db.Column(db.String(64), index=True, unique=True)
     password_hash = db.Column(db.String(128))
     is_admin = db.Column(db.Boolean, default=False)
+    latest_slides = db.Column(db.String(128))
 
     def __repr__(self):
         return '<User {}>'.format(self.username)
@@ -25,6 +26,11 @@ class User(UserMixin, db.Model):
 
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
+
+    def get_latest_slides(self):
+        if self.latest_slides:
+            return self.latest_slides.split(", ")
+        return self.latest_slides
 
 @login.user_loader
 def load_user(id):

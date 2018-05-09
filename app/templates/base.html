@@ -16,6 +16,7 @@
 		    <li class="nav-item" id ="nav_choose"><a class="nav-link" href="{{ url_for('catalogue') }}">Choose Songs</a></li>
 	        <li class="nav-item" id ="nav_add"><a class="nav-link" href="{{ url_for('add_song') }}">Add Song</a></li>
 	        <li class="nav-item" id ="nav_edit"><a class="nav-link" href="{{ url_for('edit_song') }}">Edit Song</a></li>
+	        <li class="nav-item" id ="nav_latest"><a class="nav-link" href="{{ url_for('latest_slides') }}">Saved Slides</a></li>
 	    </ul>
 	    <ul class="navbar-nav">
             {% if current_user.is_anonymous %}

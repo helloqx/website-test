@@ -25,13 +25,12 @@ def display():
         flash('Pick at least one song!')
         return redirect(url_for('catalogue'))
     else:
-        all_songs = []
-        selected_songs = request.form.get('ids').split(", ")
-        for song_id in selected_songs:
-            song = Song.query.filter_by(id=song_id).one()
-            for verse in song.lyrics.split("\n\n"):
-            	slide = Song(title=song.title, lyrics=verse)
-            	all_songs.append(slide)
+        ids = request.form.get('ids')
+        user = User.query.filter_by(id=int(current_user.get_id())).first()
+        user.latest_slides = ids
+        db.session.commit()
+        selected_songs = ids.split(", ")
+        all_songs = get_slides(selected_songs)
         return render_template('display.html', title='Display', slides=all_songs, 
                 slide_title='Worship', subtitle=datetime.now(timezone('Asia/Singapore')).date())
 
@@ -64,10 +63,22 @@ def edit_song():
         return redirect(url_for('edit_song'))
     return render_template('edit_song.html', title='Edit Song', form=form, songs=all_songs)
 
+@app.route('/latest_slides')
+@login_required
+def latest_slides():
+    user = User.query.filter_by(id=int(current_user.get_id())).first()
+    latest_slides = user.get_latest_slides()
+    if not latest_slides:
+        flash('You have not made any slides yet!')
+        return redirect(url_for('catalogue'))
+    else:
+        all_songs = get_slides(latest_slides)
+        return render_template('display.html', title='Display', slides=all_songs, 
+                slide_title='Worship', subtitle=datetime.now(timezone('Asia/Singapore')).date())
+
 @app.route('/help')
 def help():
     return "Coming Soon"
-
 
 @app.route('/contribute')
 def contribute():
@@ -108,3 +119,12 @@ def register():
         flash('Congratulations, you are now a registered user!')
         return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
+
+def get_slides(song_list):
+    all_songs = []
+    for song_id in song_list:
+        song = Song.query.filter_by(id=song_id).one()
+        for verse in song.lyrics.split("\n\n"):
+            slide = Song(title=song.title, lyrics=verse)
+            all_songs.append(slide)
+    return all_songs
