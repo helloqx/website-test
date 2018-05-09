@@ -66,8 +66,7 @@ def edit_song():
 @app.route('/latest_slides')
 @login_required
 def latest_slides():
-    user = User.query.filter_by(id=int(current_user.get_id())).first()
-    latest_slides = user.get_latest_slides()
+    latest_slides = current_user.get_latest_slides()
     if not latest_slides:
         flash('You have not made any slides yet!')
         return redirect(url_for('catalogue'))
