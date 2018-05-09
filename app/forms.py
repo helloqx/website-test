@@ -39,5 +39,5 @@ class SongEditForm(FlaskForm):
     title = StringField(label='Title', validators=[DataRequired()])
     lyrics = TextAreaField(label='Lyrics', render_kw={'rows': 20}, validators=[DataRequired()])
     link = StringField(label='Link')
-    password = StringField(label='Secret Admin Password', validators=[DataRequired()])
+    password = StringField(label='Secret Admin Password')
     submit = SubmitField(label='Edit')

@@ -22,7 +22,7 @@ def catalogue():
 def display():
     form = SongSelectForm()
     if not form.validate_on_submit():
-        flash('Pick at least one song!')
+        flash('Pick at least one song!', category='danger')
         return redirect(url_for('catalogue'))
     else:
         ids = request.form.get('ids')
@@ -44,7 +44,7 @@ def add_song():
         song = Song(title=form.title.data, lyrics=lyrics)
         db.session.add(song)
         db.session.commit()
-        flash('Congratulations, you have added a new song!')
+        flash('Congratulations, you have added a new song!', category='success')
         return redirect(url_for('add_song'))
     return render_template('add_song.html', title='Add a song', form=form)
 
@@ -53,14 +53,15 @@ def add_song():
 def edit_song():
     all_songs = Song.query.all()
     form = SongEditForm()
-    if form.validate_on_submit() and form.password.data == app.config['SECRET_ADMIN_PASSWORD']:
+    if form.validate_on_submit() and (current_user.is_user_admin() or form.password.data == app.config['SECRET_ADMIN_PASSWORD']):
         song = Song.query.filter_by(id=form.ids.data).one()
         song.title = form.title.data
         song.lyrics = form.lyrics.data.replace("\r\n", "\n")
         song.link = form.link.data
         db.session.commit()
-        flash('Your changes have been saved.')
+        flash('Your changes have been saved.', category='info')
         return redirect(url_for('edit_song'))
+    flash('Admin access only.', category='warning')
     return render_template('edit_song.html', title='Edit Song', form=form, songs=all_songs)
 
 @app.route('/latest_slides')
@@ -68,7 +69,7 @@ def edit_song():
 def latest_slides():
     latest_slides = current_user.get_latest_slides()
     if not latest_slides:
-        flash('You have not made any slides yet!')
+        flash('You have not made any slides yet!', category='warning')
         return redirect(url_for('catalogue'))
     else:
         all_songs = get_slides(latest_slides)
@@ -91,7 +92,7 @@ def login():
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.username.data).first()
         if user is None or not user.check_password(form.password.data):
-            flash('Invalid username or password')
+            flash('Invalid username or password', category='warning')
             return redirect(url_for('login'))
         login_user(user, remember=form.remember_me.data)
         next_page = request.args.get('next')
@@ -115,7 +116,7 @@ def register():
         user.set_password(form.password.data)
         db.session.add(user)
         db.session.commit()
-        flash('Congratulations, you are now a registered user!')
+        flash('Congratulations, you are now a registered user!', category='success')
         return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
 
