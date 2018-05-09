@@ -14,7 +14,7 @@
                 <h2>How to Use</h2>
                 <p>PTL provides a simple interface for creating worship slides.
                     <br> Click here for a detailed step-by-step guide on how to use PTL!</p>
-                <p><a class="btn btn-info disabled" href="{{ url_for('help') }}" role="button">Learn more »</a></p>
+                <p><a class="btn btn-info" href="#" role="button" data-toggle="modal" data-target="#helpModal">Learn more »</a></p>
             </div>
             <div class="col-md-4">
                 <h2>Contribute</h2>
@@ -25,4 +25,9 @@
         </div>
         <hr>
     </div>
+
+{% endblock %}
+
+{% block help_modal %}
+    Guide under construction. You can click help in the upper right corner to learn more about any page!
 {% endblock %}
