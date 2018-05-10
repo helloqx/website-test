@@ -59,7 +59,8 @@ def edit_song():
         db.session.commit()
         flash('Your changes have been saved.', category='info')
         return redirect(url_for('edit_song'))
-    flash('Admin access only.', category='warning')
+    if not current_user.is_user_admin():
+        flash('Admin password is required to edit songs.', category='warning')
     return render_template('edit_song.html', title='Edit Song', form=form, songs=all_songs)
 
 @app.route('/latest_slides')
@@ -76,7 +77,7 @@ def latest_slides():
 
 @app.route('/help')
 def help():
-    return "Coming Soon"
+    return render_template('help.html', title='How to Use')
 
 @app.route('/contribute')
 def contribute():

@@ -3,12 +3,6 @@
 
 {% block app_content %}
     <div class='container'>
-        <br>
-        <div class="card">
-            <div class="card-body">
-            THIS IS A TEMPORARY PAGE until the song listing is constructed.
-          </div>
-        </div>
         <h1>Edit Songs</h1>
         <form action="{{ url_for('edit_song') }}", method="POST">
             {{ wtf.quick_form(form) }}

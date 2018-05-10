@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+    <div class='container'>
+        <h1>How to Use</h1>
+        <hr>
+        <div class="card" style="width: 10rem;">
+            <div class="card-body">
+                <h5 class="card-title">Contents</h5>
+                <p class="card-text">
+                    1. <a href="#quick">Quick Help</a>
+                    <br>
+                    2. <a href="#make">Making Slides</a>
+                    <br>
+                    3. <a href="#save">Saving Slides</a>
+                    <br>
+                    4. <a href="#add">Adding Songs</a>
+                    <br>
+                    5. <a href="#edit">Edit Songs</a>
+                    <br>
+                </p>
+            </div>
+        </div>
+        <hr>
+        <h3 id='quick'>Quick Help</h3>
+        <p>
+            The help button in the top right corner of each page generally provides useful tips on how to use that page.
+        </p>
+        <h3 id='make'>Making Slides</h3>
+        <p>
+            You can make slides by going to 'Make Slides'. Find the song you need in the table and click on the '+' to add it to the list. After choosing your songs, click the 'Display' button to generate your slides.
+        </p>
+        <h3 id='save'>Saving Slides</h3>
+        <p>
+            If you are logged in, your latest slides will automatically be saved upon displaying, and can be accessed from 'Your Slides'.
+        </p>
+        <h3 id='add'>Adding Songs</h3>
+        <p>
+            If we do not have the song you want, you can easily add it by going to 'Add Song'. Please ensure that different slides are seperated with a blank line. Please do not add duplicate songs or spam the database :(.
+        </p>
+        <h3 id="edit">Edit Songs</h3>
+        <p>
+            The Edit function is currently limited to admins only. Message me for the secret admin password, or simply add a corrected version again for now and tell me to delete the wrong song. Thanks.
+        </p>
+    </div>
+{% endblock %}
+
+{% block help_modal %}
+    This is a helpful help message!
+{% endblock %}
