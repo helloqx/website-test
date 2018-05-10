@@ -1,10 +1,9 @@
 from flask import render_template, request, redirect, flash, url_for
 from app import app, db
-from flask_login import current_user, login_user, logout_user, login_required
-from app.forms import SongSelectForm, SongAddForm, SongEditForm, LoginForm, RegistrationForm
-from app.models import Song, User
+from flask_login import current_user, login_required
+from app.forms import SongSelectForm, SongAddForm, SongEditForm
+from app.models import Song
 from datetime import datetime
-from werkzeug.urls import url_parse
 from pytz import timezone
 
 @app.route('/')
@@ -16,7 +15,7 @@ def index():
 def catalogue():
     all_songs = Song.query.all()
     form = SongSelectForm()
-    return render_template('catalogue.html', title='Select Song', form=form, songs=all_songs)
+    return render_template('catalogue.html', title='Make Slides', form=form, songs=all_songs)
 
 @app.route('/display', methods=['GET', 'POST'])
 def display():
@@ -26,8 +25,7 @@ def display():
         return redirect(url_for('catalogue'))
     else:
         ids = request.form.get('ids')
-        user = User.query.filter_by(id=int(current_user.get_id())).first()
-        user.latest_slides = ids
+        current_user.latest_slides = ids
         db.session.commit()
         selected_songs = ids.split(", ")
         all_songs = get_slides(selected_songs)
@@ -46,7 +44,7 @@ def add_song():
         db.session.commit()
         flash('Congratulations, you have added a new song!', category='success')
         return redirect(url_for('add_song'))
-    return render_template('add_song.html', title='Add a song', form=form)
+    return render_template('add_song.html', title='Add a Song', form=form)
 
 @app.route('/edit_song', methods=['GET', 'POST'])
 @login_required
