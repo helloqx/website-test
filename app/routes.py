@@ -1,10 +1,9 @@
 from flask import render_template, request, redirect, flash, url_for
 from app import app, db
-from flask_login import current_user, login_user, logout_user, login_required
-from app.forms import SongSelectForm, SongAddForm, SongEditForm, LoginForm, RegistrationForm
-from app.models import Song, User
+from flask_login import current_user, login_required
+from app.forms import SongSelectForm, SongAddForm, SongEditForm
+from app.models import Song
 from datetime import datetime
-from werkzeug.urls import url_parse
 from pytz import timezone
 
 @app.route('/')
@@ -16,7 +15,7 @@ def index():
 def catalogue():
     all_songs = Song.query.all()
     form = SongSelectForm()
-    return render_template('catalogue.html', title='Select Song', form=form, songs=all_songs)
+    return render_template('catalogue.html', title='Make Slides', form=form, songs=all_songs)
 
 @app.route('/display', methods=['GET', 'POST'])
 def display():
@@ -26,8 +25,7 @@ def display():
         return redirect(url_for('catalogue'))
     else:
         ids = request.form.get('ids')
-        user = User.query.filter_by(id=int(current_user.get_id())).first()
-        user.latest_slides = ids
+        current_user.latest_slides = ids
         db.session.commit()
         selected_songs = ids.split(", ")
         all_songs = get_slides(selected_songs)
@@ -46,7 +44,7 @@ def add_song():
         db.session.commit()
         flash('Congratulations, you have added a new song!', category='success')
         return redirect(url_for('add_song'))
-    return render_template('add_song.html', title='Add a song', form=form)
+    return render_template('add_song.html', title='Add a Song', form=form)
 
 @app.route('/edit_song', methods=['GET', 'POST'])
 @login_required
@@ -83,42 +81,6 @@ def help():
 @app.route('/contribute')
 def contribute():
     return render_template('contribute.html', title='Contribute')
-
-@app.route('/login', methods=['GET', 'POST'])
-def login():
-    if current_user.is_authenticated:
-        return redirect(url_for('index'))
-    form = LoginForm()
-    if form.validate_on_submit():
-        user = User.query.filter_by(username=form.username.data).first()
-        if user is None or not user.check_password(form.password.data):
-            flash('Invalid username or password', category='warning')
-            return redirect(url_for('login'))
-        login_user(user, remember=form.remember_me.data)
-        next_page = request.args.get('next')
-        if not next_page or url_parse(next_page).netloc != '':
-            next_page = url_for('index')
-        return redirect(next_page)
-    return render_template('login.html', title='Sign In', form=form)
-
-@app.route('/logout')
-def logout():
-    logout_user()
-    return redirect(url_for('index'))
-
-@app.route('/register', methods=['GET', 'POST'])
-def register():
-    if current_user.is_authenticated:
-        return redirect(url_for('index'))
-    form = RegistrationForm()
-    if form.validate_on_submit():
-        user = User(username=form.username.data)
-        user.set_password(form.password.data)
-        db.session.add(user)
-        db.session.commit()
-        flash('Congratulations, you are now a registered user!', category='success')
-        return redirect(url_for('login'))
-    return render_template('register.html', title='Register', form=form)
 
 def get_slides(song_list):
     all_songs = []
