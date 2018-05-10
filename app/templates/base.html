@@ -20,10 +20,10 @@
 	    </ul>
 	    <ul class="navbar-nav">
             {% if current_user.is_anonymous %}
-		        <li class="nav-item" id="nav_login"><a class="nav-link" href="{{ url_for('login') }}">Login</a></li>
-            	<li class="nav-item" id="nav_register"><a class="nav-link" href="{{ url_for('register') }}">Register</a></li>
+		        <li class="nav-item" id="nav_login"><a class="nav-link" href="{{ url_for('auth.login') }}">Login</a></li>
+            	<li class="nav-item" id="nav_register"><a class="nav-link" href="{{ url_for('auth.register') }}">Register</a></li>
 	        {% else %}
-		        <li class="nav-item" id="nav_logout"><a class="nav-link" href="{{ url_for('logout') }}">Logout</a></li>
+		        <li class="nav-item" id="nav_logout"><a class="nav-link" href="{{ url_for('auth.logout') }}">Logout</a></li>
 	        {% endif %}
             <li class="nav-item" id="nav_help"><a class="nav-link" href="#" data-toggle="modal" data-target="#helpModal">Help</a></li>
         </ul>
