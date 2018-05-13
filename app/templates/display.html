@@ -36,10 +36,10 @@
 	<script>
 		var myCarousel = $(".carousel");
 		myCarousel.append("<ol class='carousel-indicators'></ol>");
-		var indicators = $(".carousel-indicators"); 
+		var indicators = $(".carousel-indicators");
 		myCarousel.find(".carousel-inner").children(".carousel-item").each(function(index) {
-		    (index === 0) ? 
-		    indicators.append("<li data-target='#carousel' data-slide-to='"+index+"' class='active'></li>") : 
+		    (index === 0) ?
+		    indicators.append("<li data-target='#carousel' data-slide-to='"+index+"' class='active'></li>") :
 		    indicators.append("<li data-target='#carousel' data-slide-to='"+index+"'></li>");
 		});
 		$(document).keydown(function(e) {
@@ -58,5 +58,85 @@
 			$(".carousel-control-next").blur()
 		});
 	</script>
+
+	<style type="text/css">
+	/*
+	    Display Page
+	*/
+	#bg, .carousel, .carousel-item{
+	    position: fixed;
+	    top: 0;
+	    left: 0;
+
+	    /* Preserve aspect ratio */
+	    min-width: 100%;
+	    min-height: 100%;
+	}
+
+	.main-title{
+		font-size: 4em;
+		line-height: 1.5em;
+		position: relative;
+	    left: -50%;
+	    background-color: rgba(255, 255, 255, .5);
+	    margin:auto;
+	    width: 75%;
+	    text-align: center;
+	}
+
+	.title-wrapper {
+		position: absolute;
+		top: 20%;
+		left: 50%;
+		width: 100%
+	}
+
+	.title{
+		font-size: 4em;
+		position: relative;
+	    left: -50%;
+	    background-color: rgba(255, 255, 255, .5);
+	    margin:auto;
+	    width: 75%;
+	    text-align: center;
+	}
+
+	.main-title-wrapper, .lyrics-wrapper {
+		position: absolute;
+		top: 40%;
+		left: 50%;
+		width: 100%
+	}
+	.lyrics{
+		font-size: 3em;
+		line-height: 1.5em;
+		position: relative;
+	    left: -50%;
+	    background-color: rgba(255, 255, 255, .5);
+	    margin:auto;
+	    width: 75%;
+	    text-align: center;
+	}
+
+	.subtitle-wrapper {
+		position: absolute;
+		top: 65%;
+		left: 50%;
+		width: 100%
+	}
+
+	.subtitle{
+		font-size: 2em;
+		position: relative;
+	    left: -50%;
+	    background-color: rgba(255, 255, 255, .5);
+	    margin:auto;
+	    width: 75%;
+	    text-align: center;
+	}
+
+	a:hover {
+	    text-decoration: none !important;
+	}</style>
 
 {% endblock %}
