@@ -180,7 +180,7 @@ a {
 
 a:hover {
 	border-bottom: 3px solid var(--linegray);
-	color: var(--red);
+	color: var(--red) !important;
 	text-decoration: none; /* remove unsightly line */
 }
 
