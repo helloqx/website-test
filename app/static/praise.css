@@ -244,3 +244,12 @@ textarea#selected {
     cursor: not-allowed;
     resize: none;
 }
+
+.dropdown-item {
+  font-size: 0.8em;
+}
+
+.dropdown-item.active, .dropdown-item:active {
+  background-color: var(--blue) !important;
+  color: #ffffff !important;
+}
