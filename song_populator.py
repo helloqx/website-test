@@ -1,4 +1,4 @@
-﻿from app import app, db
+from app import app, db
 from app.models import Song
 import os	
 import psycopg2

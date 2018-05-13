@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+    <div class="jumbotron">
+        <div class="container">
+          <h1 class="display-3">Praise the Lord!</h1>
+          <p>Make and save worship slides easily.</p>
+          <p><a class="btn btn-primary btn-lg" href="{{ url_for('catalogue') }}" role="button">Get Started   »</a></p>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <h2>How to Use</h2>
+                <p>PTL provides a simple interface for creating and saving worship slides.
+                    <br> Click here for a detailed step-by-step guide on how to use PTL!</p>
+                <p><a class="btn btn-info" href="{{ url_for('help') }}" role="button">View details »</a></p>
+            </div>
+            <div class="col-md-4">
+                <h2>Contribute</h2>
+                <p>Spot an error? Want to help out?
+                    <br>Click here to learn how you can contribute!</p>
+                <p><a class="btn btn-info" href="{{ url_for('contribute') }}" role="button">View details »</a></p>
+            </div>
+        </div>
+        <hr>
+    </div>
+
+{% endblock %}
+
+{% block help_modal %}
+    Guide under construction. You can click help in the upper right corner to learn more about any page!
+{% endblock %}
