@@ -1,36 +1,98 @@
 {% extends "base.html" %}
 {% import 'bootstrap/wtf.html' as wtf %}
 
+{% block navbar %}
+
+<nav class="navbar navbar-expand-md navbar-light py-4">
+		<div class="container">
+      <a class="navbar-brand" href="/">PRAISE</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarpraise" aria-controls="navbarpraise" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarpraise">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('help') }}">How it works</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('contribute') }}">Contribute</a>
+          </li>
+        </ul>
+
+	 <span class="navbar-text">
+
+     {% if current_user.is_anonymous %}
+      <a href="{{ url_for('auth.login') }}">Login</a> / <a href="{{ url_for('auth.register') }}">Sign up</a>
+      {% else %}
+        <a href="{{ url_for('auth.logout') }}">Logout</a>
+     {% endif %}
+    </span>
+
+      </div>
+
+		</div>
+    </nav>
+{% endblock %}
+
+
 {% block app_content %}
 
 <div class="container">
+<div class="row">
+
+<div class="col-12 col-md-8">
+<h2 class="text-blue">Create Slides</h2>
+
+<table id="all_songs" class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Song</th>
+            <th>Lyrics (First Slide)</th>
+            <th>Actions</th>
+            <th>Lyrics (Rest)</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for song in songs %}
+            {% include '_song.html' %}
+        {% endfor %}
+    </tbody>
+</table>
+
+</div>
+
+<div class="col-12 col-md-4">
+
+<div class="col-12">
+
+<h3 class="text-red">How to use</h3>
+
+<p>Click <span class="fas fa-plus"></span> to add a song.
+<br>
+Click <span class="fas fa-minus"></span> to remove a song.
+<br>
+Click <span class="fab fa-youtube"></span> to listen to the song on Youtube.</p>
+<hr>
+<p>Click the <strong>Display button</strong> after choosing one or more songs to launch the slides.</p>
+
+<p>If you are logged in, the slides will be saved and can be accessed from 'Saved Slides'.</p>
+
+<h3 class="text-blue">Selected songs</h3>
+  <form action="{{ url_for('display') }}", method="POST" class="selectedsongs">
+      {{ wtf.quick_form(form) }}
+  </form>
+</div>
 
 
 
 </div>
 
-    <div class='container'>
-        <h1>Select Songs</h1>
-        <form action="{{ url_for('display') }}", method="POST">
-            {{ wtf.quick_form(form) }}
-        </form>
-        <hr>
-        <table id="all_songs" class="table table-striped table-bordered">
-            <thead>
-                <tr>
-                    <th>Song</th>
-                    <th>Lyrics (First Slide)</th>
-                    <th>Actions</th>
-                    <th>Lyrics (Rest)</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for song in songs %}
-                    {% include '_song.html' %}
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
+</div>
+</div>
+
+
+
 {% endblock %}
 
 {% block scripts %}
@@ -89,16 +151,4 @@
 
 {% block styles%}
 {{ super() }}
-{% endblock %}
-
-{% block help_modal %}
-    Click <span class="fas fa-plus"></span> to add a song.
-    <br>
-    Click <span class="fas fa-minus"></span> to remove a song.
-    <br>
-    Click <span class="fab fa-youtube"></span> to listen to the song on Youtube.
-    <hr>
-    Click <input class="btn btn-default" type="submit" value="Display"> after choosing 1 or more songs to launch the slides.
-    <br>
-    If you are logged in, the slides will be saved and can be accessed from 'Saved Slides'.
 {% endblock %}

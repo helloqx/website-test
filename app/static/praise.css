@@ -139,6 +139,19 @@ font-style: italic;
   border-color: var(--blue);
 }
 
+.btn-default {
+  color: white !important;
+  font-size: 1em !important;
+  background-color: var(--red) !important;
+  background-image: none !important;
+}
+
+.btn-default:hover {
+  color: #fff !important;
+  background-color: var(--red) !important;
+}
+
+
 
 /* Headers */
 
@@ -151,6 +164,10 @@ h1, h2, h3, h4, h5, h6 {
 	font-family: 'Brother', 'Helvetica Neue', sans-serif;
 	font-weight: bold;
 	color: var(--blue);
+}
+
+.thin-header {
+  font-weight: 200 !important;
 }
 
 
@@ -195,7 +212,6 @@ a.navbar-brand, .nav-link, nav a {
 .text-gray {
 	color: var(--dark);
 }
-
 
 .strong-increasetext {
 	font-size: 1.3em;
