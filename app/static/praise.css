@@ -249,6 +249,10 @@ textarea#selected {
   font-size: 0.8em;
 }
 
+.dropdown-menu {
+  z-index: 1021; /* to arrange in front of sticky bar */
+}
+
 .dropdown-item.active, .dropdown-item:active {
   background-color: var(--blue) !important;
   color: #ffffff !important;
