@@ -139,16 +139,16 @@ font-style: italic;
   border-color: var(--blue);
 }
 
-.btn-default {
-  color: white !important;
-  font-size: 1em !important;
-  background-color: var(--red) !important;
-  background-image: none !important;
+.btn-red {
+  color: white;
+  font-size: 1em;
+  background-color: var(--red);
+  background-image: none;
 }
 
-.btn-default:hover {
-  color: #fff !important;
-  background-color: var(--red) !important;
+.btn-red:hover {
+  color: #fff;
+  background-color: var(--red);
 }
 
 
