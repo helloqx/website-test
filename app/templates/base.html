@@ -2,7 +2,7 @@
 
 {% block title %}
     {% if title %}{{ title }}
-    {% else %}Praise - Worship slide generator{% endif %}
+    {% else %}Praise - Worship Slide Generator{% endif %}
 {% endblock %}
 
 {% block navbar %}
@@ -22,9 +22,11 @@
           <li class="nav-item">
             <a class="nav-link" href="{{ url_for('contribute') }}">Contribute</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Help</a>
-          </li>
+          {% if current_user.is_authenticated %}
+            <li class="nav-item" id ="nav_latest"><a class="nav-link" href="{{ url_for('latest_slides') }}">Your Slides</a></li>
+            <li class="nav-item" id ="nav_add"><a class="nav-link" href="{{ url_for('add_song') }}">Add Song</a></li>
+            <li class="nav-item" id ="nav_edit"><a class="nav-link" href="{{ url_for('edit_song') }}">Edit Song</a></li>
+          {% endif %}
         </ul>
 
 	 <span class="navbar-text">
@@ -79,6 +81,11 @@
             </div>
         </div>
     </div>
+    <footer class="footer">
+      <div class="container">
+        <span class="text-muted">&copy; Praise 2018</span>
+      </div>
+    </footer>
 {% endblock %}
 
 {% block styles %}
