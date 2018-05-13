@@ -46,7 +46,9 @@ font-style: italic;
 
 @font-face {
 font-family: 'Brother';
-src: url('fonts/eot/05-brother1816-book-Web.eot') format('eot'), url('fonts/woff/05-brother1816-book-Web.woff') format('woff'), url('fonts/ttf/05-brother1816-book-Web.ttf') format('truetype');
+src: url('fonts/eot/05-brother1816-book-Web.eot') format('eot');
+src: url('fonts/woff/05-brother1816-book-Web.woff') format('woff');
+src: url('fonts/ttf/05-brother1816-book-Web.ttf') format('truetype');
 font-weight: normal; /* note: normal is 400 */
 font-style: normal;
  }
